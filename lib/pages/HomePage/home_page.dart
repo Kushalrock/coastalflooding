@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sih2023/constants/Theme.dart';
 import 'package:sih2023/pages/HomePage/controllers/home_page_controller.dart';
+import 'package:sih2023/pages/HomePage/controllers/news_controller.dart';
+import 'package:sih2023/pages/HomePage/subpages/NewsPage/news_page.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,9 +15,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomePageController homePageController = Get.put(HomePageController());
+  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            'Home',
+            style: TextStyle(
+              color: NowUIColors.black,
+            ),
+          ),
+        ),
+        backgroundColor: NowUIColors.white,
+      ),
+      body: PageView(
+        controller: _pageController,
+        children: [NewsPage()],
+      ),
       bottomNavigationBar: Obx(
         () => WaterDropNavBar(
           bottomPadding: 10,

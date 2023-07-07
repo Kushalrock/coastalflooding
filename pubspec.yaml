@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   water_drop_nav_bar: ^2.2.0+5
+  dio: ^5.2.1+1
+  url_launcher: ^6.1.11
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
