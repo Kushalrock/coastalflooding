@@ -27,9 +27,7 @@ class _NewsPageState extends State<NewsPage> {
           title: newsController.news[i].title,
           desc: newsController.news[i].description,
           img: newsController.news[i].urlToImage,
-          tap: () {
-            launchUrlString(newsController.news[i].url);
-          },
+          url: newsController.news[i].url,
           publishedAt: newsController.news[i].publishedAt,
         ),
       );
