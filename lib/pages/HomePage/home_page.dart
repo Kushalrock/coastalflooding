@@ -4,6 +4,7 @@ import 'package:sih2023/constants/Theme.dart';
 import 'package:sih2023/pages/HomePage/controllers/home_page_controller.dart';
 import 'package:sih2023/pages/HomePage/controllers/news_controller.dart';
 import 'package:sih2023/pages/HomePage/subpages/NewsPage/news_page.dart';
+import 'package:sih2023/pages/HomePage/subpages/ProfilePage/profile_page.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: PageView(
         controller: _pageController,
-        children: [NewsPage()],
+        children: [NewsPage(), ProfilePage()],
       ),
       bottomNavigationBar: Obx(
         () => WaterDropNavBar(
@@ -49,6 +50,8 @@ class _HomePageState extends State<HomePage> {
           ],
           selectedIndex: homePageController.currentPage.value,
           onItemSelected: (int index) {
+            _pageController.animateToPage(index,
+                duration: Duration(milliseconds: 500), curve: Curves.linear);
             homePageController.currentPage.value = index;
           },
         ),
