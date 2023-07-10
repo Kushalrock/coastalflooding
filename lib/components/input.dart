@@ -11,6 +11,8 @@ class Input extends StatelessWidget {
   final TextEditingController? controller;
   final bool autofocus;
   final Color borderColor;
+  final TextInputType textInputType;
+  final bool obscureText;
 
   Input(
       {this.placeholder,
@@ -20,11 +22,15 @@ class Input extends StatelessWidget {
       this.onChanged,
       this.autofocus = false,
       this.borderColor = NowUIColors.border,
-      this.controller});
+      this.controller,
+      this.textInputType = TextInputType.text,
+      this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+        keyboardType: textInputType,
+        obscureText: obscureText,
         cursorColor: NowUIColors.muted,
         onTap: onTap == null ? () {} : onTap!(),
         onChanged: onChanged == null ? (String _) {} : onChanged!(),

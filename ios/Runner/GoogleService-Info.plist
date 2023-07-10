@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>90008980506-q71sb9niooafvqv07qmq3j8gr3nufcv1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.90008980506-q71sb9niooafvqv07qmq3j8gr3nufcv1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDal8eZmYVbLRIyLYob_rcJ1Ss9H-qUUuI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>90008980506</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.sih2023</string>
+	<key>PROJECT_ID</key>
+	<string>aquasol-coastal-flooding-sih</string>
+	<key>STORAGE_BUCKET</key>
+	<string>aquasol-coastal-flooding-sih.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:90008980506:ios:7be2ef14e8d856f21d95a3</string>
+</dict>
+</plist>

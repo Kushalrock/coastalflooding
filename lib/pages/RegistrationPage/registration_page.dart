@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sih2023/pages/RegistrationPage/controllers/registration_page_controller.dart';
 
 import '../../components/input.dart';
 import '../../constants/Theme.dart';
@@ -14,6 +16,8 @@ class _RegisterState extends State<Register> {
   bool _checkboxValue = false;
 
   final double height = window.physicalSize.height;
+  final RegistrationPageController registrationPageControler =
+      Get.put(RegistrationPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -82,15 +86,37 @@ class _RegisterState extends State<Register> {
                                           child: Input(
                                             placeholder: "First Name...",
                                             prefixIcon:
-                                                Icon(Icons.school, size: 20),
+                                                Icon(Icons.abc, size: 20),
+                                            controller:
+                                                registrationPageControler
+                                                    .firstNameController,
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Input(
-                                              placeholder: "Last Name...",
-                                              prefixIcon:
-                                                  Icon(Icons.email, size: 20)),
+                                            placeholder: "Last Name...",
+                                            prefixIcon:
+                                                Icon(Icons.abc, size: 20),
+                                            controller:
+                                                registrationPageControler
+                                                    .lastNameController,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0,
+                                              left: 8.0,
+                                              right: 8.0,
+                                              bottom: 8.0),
+                                          child: Input(
+                                            placeholder: "Your Email...",
+                                            prefixIcon:
+                                                Icon(Icons.mail, size: 20),
+                                            controller:
+                                                registrationPageControler
+                                                    .emailController,
+                                          ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
@@ -99,9 +125,16 @@ class _RegisterState extends State<Register> {
                                               right: 8.0,
                                               bottom: 0),
                                           child: Input(
-                                              placeholder: "Your Email...",
-                                              prefixIcon:
-                                                  Icon(Icons.lock, size: 20)),
+                                            textInputType:
+                                                TextInputType.visiblePassword,
+                                            obscureText: true,
+                                            placeholder: "Password...",
+                                            prefixIcon:
+                                                Icon(Icons.lock, size: 20),
+                                            controller:
+                                                registrationPageControler
+                                                    .passwordController,
+                                          ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
@@ -137,35 +170,60 @@ class _RegisterState extends State<Register> {
                                       ],
                                     ),
                                     Center(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: NowUIColors.primary,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(32.0),
-                                          ),
-                                        ),
-                                        onPressed: _checkboxValue == false
-                                            ? null
-                                            : () {
-                                                // Respond to button press
-                                                Navigator.pushReplacementNamed(
-                                                    context, '/home');
-                                              },
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 32.0,
-                                              right: 32.0,
-                                              top: 12,
-                                              bottom: 12),
-                                          child: Text(
-                                            "Get Started",
-                                            style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: NowUIColors.white,
-                                            ),
-                                          ),
-                                        ),
+                                      child: Obx(
+                                        () => registrationPageControler
+                                                .loading.value
+                                            ? CircularProgressIndicator()
+                                            : ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      NowUIColors.primary,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            32.0),
+                                                  ),
+                                                ),
+                                                onPressed: _checkboxValue ==
+                                                        false
+                                                    ? null
+                                                    : () async {
+                                                        final resp =
+                                                            await registrationPageControler
+                                                                .signUp();
+                                                        if (resp["success"] ==
+                                                            true) {
+                                                          Navigator
+                                                              .pushReplacementNamed(
+                                                                  context,
+                                                                  '/home');
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                resp['error'],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                      },
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 32.0,
+                                                      right: 32.0,
+                                                      top: 12,
+                                                      bottom: 12),
+                                                  child: Text(
+                                                    "Get Started",
+                                                    style: TextStyle(
+                                                      fontSize: 14.0,
+                                                      color: NowUIColors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
                                       ),
                                     ),
                                   ],

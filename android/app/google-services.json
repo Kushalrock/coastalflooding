@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "90008980506",
+    "project_id": "aquasol-coastal-flooding-sih",
+    "storage_bucket": "aquasol-coastal-flooding-sih.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90008980506:android:a00a9ed810db68331d95a3",
+        "android_client_info": {
+          "package_name": "com.example.sih2023"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90008980506-2upt3nhh9q36248kkth23543qag241cb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPKxF97eoEZhDI8EvHYCQkJb-wLJvx5DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90008980506-2upt3nhh9q36248kkth23543qag241cb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
