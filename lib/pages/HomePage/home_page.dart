@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sih2023/constants/Theme.dart';
 import 'package:sih2023/pages/HomePage/controllers/home_page_controller.dart';
 import 'package:sih2023/pages/HomePage/controllers/news_controller.dart';
+import 'package:sih2023/pages/HomePage/subpages/MonitoringPage/monitoringpage.dart';
 import 'package:sih2023/pages/HomePage/subpages/NewsPage/news_page.dart';
 import 'package:sih2023/pages/HomePage/subpages/ProfilePage/profile_page.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: PageView(
         controller: _pageController,
-        children: [NewsPage(), ProfilePage()],
+        children: [NewsPage(), ProfilePage(), MonitoringPage()],
       ),
       bottomNavigationBar: Obx(
         () => WaterDropNavBar(
@@ -46,6 +47,10 @@ class _HomePageState extends State<HomePage> {
             BarItem(
               filledIcon: Icons.person_2,
               outlinedIcon: Icons.person_2_outlined,
+            ),
+            BarItem(
+              filledIcon: Icons.map,
+              outlinedIcon: Icons.map_outlined,
             ),
           ],
           selectedIndex: homePageController.currentPage.value,
