@@ -1,7 +1,7 @@
 class QuizQuestion {
   String questionText;
   List<String> questionOptions;
-  int correctOption;
+  String correctOption;
   int pointsPerQuestion;
 
   QuizQuestion(
