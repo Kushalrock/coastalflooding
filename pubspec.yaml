@@ -44,6 +44,8 @@ dependencies:
   firebase_auth: ^4.6.3
   fl_chart: ^0.62.0
   webview_flutter: ^4.2.2
+  cloud_firestore: ^4.8.2
+  super_banners: ^0.0.1
 
 dev_dependencies:
   flutter_test:

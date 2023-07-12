@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:sih2023/models/quiz_question_model.dart';
 
@@ -17,7 +19,7 @@ class QuizPageController extends GetxController {
 
   var passingPointsCriteria = 8;
 
-  var completedModules = [].obs;
+  var completedModules = {}.obs;
 
   var levelsArray = ["Novice", "Competent", "Experienced", "Master"];
 
@@ -31,7 +33,9 @@ class QuizPageController extends GetxController {
 
   var totalPointsAttainable = 0.obs;
 
-  void evaluateQuestionnaire() {
+  var loading = false.obs;
+
+  Future<void> evaluateQuestionnaire() async {
     for (int i = 0; i < modulesAndQuestions[currentModule.value].length; i++) {
       if (modulesAndQuestions[currentModule.value][i].correctOption ==
           answeredArray[i]) {
@@ -43,8 +47,28 @@ class QuizPageController extends GetxController {
     }
     if (totalPointsForTheCurrentSession.value < passingPointsCriteria) {
       passed.value = false;
+    } else {
+      completedModules.value[currentModule.value.toString()] =
+          totalPointsForTheCurrentSession.value;
     }
     submitted.value = true;
-    completedModules.add(currentModule.value);
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .set({"completed_modules": completedModules.value},
+            SetOptions(merge: true));
+  }
+
+  getModules() async {
+    loading.value = true;
+    final data = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .get();
+    if (data.data() != null) {
+      completedModules.value = data.data()!["completed_modules"];
+    }
+    loading.value = false;
   }
 }
