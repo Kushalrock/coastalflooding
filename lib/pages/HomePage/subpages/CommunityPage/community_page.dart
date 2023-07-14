@@ -100,15 +100,15 @@ class _CommunityPageState extends State<CommunityPage> {
                             children: [
                               Container(
                                 child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 30,
-                                  ),
-                                ),
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Image.asset(
+                                      'assets/images/profile-img.png',
+                                      height: 40,
+                                      width: 40,
+                                    )),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.grey,
+                                  color: Colors.lightBlue,
                                 ),
                               ),
                               SizedBox(

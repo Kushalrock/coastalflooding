@@ -102,14 +102,15 @@ class _PostPageState extends State<PostPage> {
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: Icon(
-                        Icons.person,
-                        size: 30,
+                      child: Image.asset(
+                        'assets/images/profile-img.png',
+                        height: 40,
+                        width: 40,
                       ),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 234, 234, 234),
+                      color: Colors.lightBlue,
                     ),
                   ),
                   SizedBox(
