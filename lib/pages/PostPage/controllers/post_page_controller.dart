@@ -73,6 +73,33 @@ class PostPageController extends GetxController {
     if (postController.text.contains('Sea Rise')) {
       pointsToAward += 10;
     }
+    if (postController.text.contains('Sea')) {
+      pointsToAward += 10;
+    }
+    if (postController.text.contains('flood')) {
+      pointsToAward += 10;
+    }
+    if (postController.text.contains('Flood')) {
+      pointsToAward += 10;
+    }
+    if (postController.text.contains('india')) {
+      pointsToAward += 10;
+    }
+    if (postController.text.contains('singapore')) {
+      pointsToAward += 10;
+    }
+    if (postController.text.contains('disaster')) {
+      pointsToAward += 10;
+    }
+    if (postController.text.contains('dam')) {
+      pointsToAward += 10;
+    }
+    if (postController.text.contains('')) {
+      pointsToAward += 10;
+    }
+
+
+
   }
 
   Future<String> uploadPhoto(File photo) async {
