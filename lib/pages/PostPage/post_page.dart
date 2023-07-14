@@ -158,8 +158,18 @@ class _PostPageState extends State<PostPage> {
                         : Row(
                             children: [
                               IconButton(
-                                onPressed: () {
-                                  postPageController.uploadPost(_photo);
+                                onPressed: () async {
+                                  var res = await postPageController
+                                      .uploadPost(_photo);
+                                  if (res != null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          res['error'],
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 },
                                 icon: Icon(
                                   Icons.post_add,

@@ -55,51 +55,64 @@ class PostPageController extends GetxController {
 
   checkTextAwardPoints({var imageGiven = true}) {
     pointsToAward = 0;
+    bool success = false;
     if (imageGiven) {
       pointsToAward += 10;
     }
     if (postController.text.contains('Singapore')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('India')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('Coastal')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('Flooding')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('Sea Rise')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('Sea')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('flood')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('Flood')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('india')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('singapore')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('disaster')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('dam')) {
       pointsToAward += 10;
+      success = true;
     }
     if (postController.text.contains('')) {
       pointsToAward += 10;
+      success = true;
     }
 
-
-
+    return success;
   }
 
   Future<String> uploadPhoto(File photo) async {
@@ -120,9 +133,10 @@ class PostPageController extends GetxController {
   uploadPost(File? photo) async {
     loading.value = true;
     var imgageUrl = "";
+    var success = checkTextAwardPoints();
+    if (success == false) return {"error": "Not a valid post"};
     if (photo != null) {
       imgageUrl = await uploadPhoto(photo);
-      checkTextAwardPoints();
     }
     checkTextAwardPoints(imageGiven: false);
     await FirebaseFirestore.instance
