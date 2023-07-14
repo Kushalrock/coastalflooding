@@ -109,7 +109,6 @@ class PostPageController extends GetxController {
     }
     if (postController.text.contains('')) {
       pointsToAward += 10;
-      success = true;
     }
 
     return success;
@@ -133,12 +132,16 @@ class PostPageController extends GetxController {
   uploadPost(File? photo) async {
     loading.value = true;
     var imgageUrl = "";
-    var success = checkTextAwardPoints();
+    var success = false;
+    if (photo == null) {
+      success = checkTextAwardPoints(imageGiven: false);
+    } else {
+      success = checkTextAwardPoints();
+    }
     if (success == false) return {"error": "Not a valid post"};
     if (photo != null) {
       imgageUrl = await uploadPhoto(photo);
     }
-    checkTextAwardPoints(imageGiven: false);
     await FirebaseFirestore.instance
         .collection('posts')
         .doc(DateTime.now().toString())
