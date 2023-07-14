@@ -143,7 +143,7 @@ class _QuizPageState extends State<QuizPage> {
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       children: getChildrenWidgets(context),
-      childAspectRatio: 0.57,
+      childAspectRatio: 0.52,
       padding: EdgeInsets.all(10.0),
     );
   }
