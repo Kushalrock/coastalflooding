@@ -49,18 +49,22 @@ class _CommunityPageState extends State<CommunityPage> {
           await FirebaseFirestore.instance
               .collection('users')
               .doc(emailToDonateTo)
-              .set({"aqua_points": refOfOtherUser.data()!["aqua_points"] + 10},
-                  SetOptions(merge: true));
+              .set({
+            "aqua_points": refOfOtherUser.data()!["aqua_points"] + 10,
+            "recent_aqua_points": 10
+          }, SetOptions(merge: true));
         } else {
           await FirebaseFirestore.instance
               .collection('users')
               .doc(emailToDonateTo)
-              .set({"aqua_points": 10}, SetOptions(merge: true));
+              .set({"aqua_points": 10, "recent_aqua_points": 10},
+                  SetOptions(merge: true));
         }
         await FirebaseFirestore.instance
             .collection('users')
             .doc(FirebaseAuth.instance.currentUser!.email)
-            .set({"aqua_points": aquapoints - 10}, SetOptions(merge: true));
+            .set({"aqua_points": aquapoints - 10, "recent_aqua_points": -10},
+                SetOptions(merge: true));
       } else {
         toReturn["success"] = false;
         toReturn["error"] = "Earn More Aqua Points by interacting!";

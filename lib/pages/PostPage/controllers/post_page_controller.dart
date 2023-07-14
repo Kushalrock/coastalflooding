@@ -128,13 +128,18 @@ class PostPageController extends GetxController {
       await FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.email)
-          .set({"aqua_points": stuff.data()!["aqua_points"] + pointsToAward},
-              SetOptions(merge: true));
+          .set({
+        "aqua_points": stuff.data()!["aqua_points"] + pointsToAward,
+        "recent_aqua_points": pointsToAward
+      }, SetOptions(merge: true));
     } else {
       await FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.email)
-          .set({"aqua_points": pointsToAward}, SetOptions(merge: true));
+          .set({
+        "aqua_points": pointsToAward,
+        "recent_aqua_points": pointsToAward
+      }, SetOptions(merge: true));
     }
     loading.value = false;
   }

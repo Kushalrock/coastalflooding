@@ -31,7 +31,7 @@ class _NewsPageState extends State<NewsPage> {
   void initState() {
     super.initState();
     _profileController.initProfileData();
-
+    _profileController.getAquaPoints();
     newsController.getNews();
   }
   // @override
@@ -124,9 +124,18 @@ class _NewsPageState extends State<NewsPage> {
                               ),
                             ),
                           ),
-                          Text(
-                            "(+20)",
-                            style: TextStyle(fontSize: 20, color: Colors.green),
+                          Obx(
+                            () => Text(
+                              " (${_profileController.recentAquaPoints.value >= 0 ? '+' : ''}${_profileController.recentAquaPoints.value.toString()})",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color:
+                                    _profileController.recentAquaPoints.value >=
+                                            0
+                                        ? Colors.green
+                                        : Colors.red,
+                              ),
+                            ),
                           ),
                         ],
                       ),
