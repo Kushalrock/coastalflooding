@@ -43,7 +43,10 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.of(context).pushNamed('/heatmap');
             },
-            icon: Icon(Icons.map),
+            icon: Icon(
+              Icons.map,
+              color: Colors.black,
+            ),
           )
         ],
         backgroundColor: NowUIColors.white,

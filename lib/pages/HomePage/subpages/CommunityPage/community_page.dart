@@ -178,7 +178,7 @@ class _CommunityPageState extends State<CommunityPage> {
                                       color: Colors.lightBlue,
                                     ),
                                     SizedBox(
-                                      width: 150,
+                                      width: 115,
                                     ),
                                     TextButton.icon(
                                         onPressed: loading
@@ -225,8 +225,8 @@ class _CommunityPageState extends State<CommunityPage> {
                 child: Center(
                   child: Image.asset(
                     "assets/images/waterdrop-image-thumbs-up.jpg",
-                    height: 300,
-                    width: 300,
+                    height: 100,
+                    width: 100,
                   ),
                 ),
                 height: MediaQuery.of(context).size.height * 0.8,
