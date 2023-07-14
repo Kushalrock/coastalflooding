@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:sih2023/models/quiz_question_model.dart';
@@ -226,6 +227,32 @@ class QuizPageController extends GetxController {
   var totalPointsAttainable = 0.obs;
 
   var loading = false.obs;
+  var moduleWiseCredentials = [
+    {
+      "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
+      "issueDate": "2022-01-01",
+      "expiryDate": "2023-01-01",
+      "groupId": "01h50gk2g90zf7k99exrvxrrhn"
+    },
+    {
+      "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
+      "issueDate": "2022-01-01",
+      "expiryDate": "2023-01-01",
+      "groupId": "01h55nmz26epq44hn8sm3q0cps"
+    },
+    {
+      "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
+      "issueDate": "2022-01-01",
+      "expiryDate": "2023-01-01",
+      "groupId": "01h55p4tdbk1ajf0ax6vdr7jwf"
+    },
+    {
+      "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
+      "issueDate": "2022-01-01",
+      "expiryDate": "2023-01-01",
+      "groupId": "01h55p61qn32cwzctr1enfh4gj"
+    }
+  ];
 
   Future<void> evaluateQuestionnaire() async {
     for (int i = 0; i < modulesAndQuestions[currentModule.value].length; i++) {
@@ -250,6 +277,36 @@ class QuizPageController extends GetxController {
         .doc(FirebaseAuth.instance.currentUser!.email)
         .set({"completed_modules": completedModules.value},
             SetOptions(merge: true));
+    if (passed.value) {
+      var dataToPass = Map.from(moduleWiseCredentials[currentModule.value]);
+      dataToPass["recipient"]["name"] =
+          FirebaseAuth.instance.currentUser!.displayName;
+      dataToPass["recipient"]["email"] =
+          FirebaseAuth.instance.currentUser!.email;
+
+      final res = await Dio().post(
+        "https://api.certifier.io/v1/credentials",
+        data: dataToPass,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer cfp_vHZtghF0XS7Rq7xtjAsyHC5fevhDqlhmLlOZ',
+            "Certifier-Version": "2022-10-26",
+          },
+        ),
+      );
+      final publishRes = await Dio().post(
+        "https://api.certifier.io/v1/credentials/${res.data['id']}/publish",
+        data: {
+          "deliveryType": "none",
+        },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer cfp_vHZtghF0XS7Rq7xtjAsyHC5fevhDqlhmLlOZ',
+            "Certifier-Version": "2022-10-26",
+          },
+        ),
+      );
+    }
   }
 
   getModules() async {
@@ -258,8 +315,10 @@ class QuizPageController extends GetxController {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.email)
         .get();
-    if (data.data() != null) {
+    if (data.data() != null && data.data()!.containsKey("completed_modules")) {
       completedModules.value = data.data()!["completed_modules"];
+    } else {
+      completedModules.value = {};
     }
     loading.value = false;
   }
