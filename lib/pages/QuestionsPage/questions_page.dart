@@ -165,9 +165,12 @@ class QuestionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
         title: Center(
           child: Text(
-            'Home',
+            'Quiz',
             style: TextStyle(
               color: NowUIColors.black,
             ),

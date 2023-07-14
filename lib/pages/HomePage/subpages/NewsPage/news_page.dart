@@ -62,6 +62,9 @@ class _NewsPageState extends State<NewsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
