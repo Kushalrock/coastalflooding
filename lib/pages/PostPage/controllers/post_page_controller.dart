@@ -71,6 +71,22 @@ class PostPageController extends GetxController {
       "img-url": imgageUrl,
       "content": postController.text,
     });
+    final stuff = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .get();
+    if (stuff.data() != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.email)
+          .set({"aqua_points": stuff.data()!["aqua_points"] + pointsToAward},
+              SetOptions(merge: true));
+    } else {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.email)
+          .set({"aqua_points": pointsToAward}, SetOptions(merge: true));
+    }
     loading.value = false;
   }
 }
