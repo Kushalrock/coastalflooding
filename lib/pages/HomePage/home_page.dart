@@ -24,12 +24,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Home',
-            style: TextStyle(
-              color: NowUIColors.black,
-            ),
+        title: Text(
+          'Home',
+          style: TextStyle(
+            color: NowUIColors.black,
           ),
         ),
         actions: [
@@ -46,6 +44,15 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(
               Icons.map,
               color: Colors.black,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/alert');
+            },
+            icon: Icon(
+              Icons.notifications,
+              color: Colors.red,
             ),
           )
         ],
