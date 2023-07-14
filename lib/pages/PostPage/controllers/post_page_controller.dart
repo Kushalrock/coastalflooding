@@ -107,8 +107,13 @@ class PostPageController extends GetxController {
       pointsToAward += 10;
       success = true;
     }
-    if (postController.text.contains('')) {
+    if (postController.text.contains('floods')) {
       pointsToAward += 10;
+      success = true;
+    }
+    if (postController.text.contains('Floods')) {
+      pointsToAward += 10;
+      success = true;
     }
 
     return success;
