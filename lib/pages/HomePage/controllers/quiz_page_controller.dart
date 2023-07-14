@@ -230,26 +230,26 @@ class QuizPageController extends GetxController {
   var moduleWiseCredentials = [
     {
       "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
-      "issueDate": "2022-01-01",
-      "expiryDate": "2023-01-01",
+      "issueDate": "2023-07-14",
+      "expiryDate": "2026-01-01",
       "groupId": "01h50gk2g90zf7k99exrvxrrhn"
     },
     {
       "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
-      "issueDate": "2022-01-01",
-      "expiryDate": "2023-01-01",
+      "issueDate": "2023-07-14",
+      "expiryDate": "2026-01-01",
       "groupId": "01h55nmz26epq44hn8sm3q0cps"
     },
     {
       "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
-      "issueDate": "2022-01-01",
-      "expiryDate": "2023-01-01",
+      "issueDate": "2023-07-14",
+      "expiryDate": "2026-01-01",
       "groupId": "01h55p4tdbk1ajf0ax6vdr7jwf"
     },
     {
       "recipient": {"name": "Johnn Doe", "email": "john.doe@example.com"},
-      "issueDate": "2022-01-01",
-      "expiryDate": "2023-01-01",
+      "issueDate": "2023-07-14",
+      "expiryDate": "2026-01-01",
       "groupId": "01h55p61qn32cwzctr1enfh4gj"
     }
   ];
