@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sih2023/constants/Theme.dart';
 import 'package:sih2023/pages/HomePage/controllers/home_page_controller.dart';
 import 'package:sih2023/pages/HomePage/controllers/news_controller.dart';
+import 'package:sih2023/pages/HomePage/subpages/CommunityPage/community_page.dart';
 import 'package:sih2023/pages/HomePage/subpages/MonitoringPage/monitoringpage.dart';
 import 'package:sih2023/pages/HomePage/subpages/NewsPage/news_page.dart';
 import 'package:sih2023/pages/HomePage/subpages/ProfilePage/profile_page.dart';
@@ -31,11 +32,19 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/post');
+            },
+            child: Text('POST'),
+          )
+        ],
         backgroundColor: NowUIColors.white,
       ),
       body: PageView(
         controller: _pageController,
-        children: [NewsPage(), ProfilePage(), MonitoringPage(), QuizPage()],
+        children: [NewsPage(), CommunityPage(), MonitoringPage(), QuizPage()],
       ),
       bottomNavigationBar: Obx(
         () => WaterDropNavBar(
@@ -46,8 +55,8 @@ class _HomePageState extends State<HomePage> {
               outlinedIcon: Icons.public_outlined,
             ),
             BarItem(
-              filledIcon: Icons.person_2,
-              outlinedIcon: Icons.person_2_outlined,
+              filledIcon: Icons.people_alt,
+              outlinedIcon: Icons.people_alt_outlined,
             ),
             BarItem(
               filledIcon: Icons.map,
