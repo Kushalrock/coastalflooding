@@ -102,7 +102,7 @@ class _HeatMapPageState extends State<HeatMapPage> {
             return CircularProgressIndicator();
           } else {
             return GoogleMap(
-              mapType: MapType.hybrid,
+             
               initialCameraPosition: CameraPosition(
                   target: LatLng(
                       currentPosition.latitude, currentPosition.longitude)),
