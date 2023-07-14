@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sih2023/pages/AlertsPage/alerts_page.dart';
+import 'package:sih2023/pages/DevPage/dev_page.dart';
 import 'package:sih2023/pages/HeatMap/heat_map_page.dart';
 import 'package:sih2023/pages/HomePage/home_page.dart';
 import 'package:sih2023/pages/HomePage/subpages/QuizPage/quiz_page.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/post': (context) => PostPage(),
         '/heatmap': (context) => HeatMapPage(),
         '/alert': (context) => AlertsPage(),
+        '/dev': (context) => DevPage(),
       },
     );
   }

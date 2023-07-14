@@ -54,6 +54,15 @@ class _HomePageState extends State<HomePage> {
               Icons.notifications,
               color: Colors.red,
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/dev');
+            },
+            icon: Icon(
+              Icons.developer_board,
+              color: Colors.blueGrey,
+            ),
           )
         ],
         backgroundColor: NowUIColors.white,
