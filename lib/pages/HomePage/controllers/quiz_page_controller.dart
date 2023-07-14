@@ -209,7 +209,7 @@ class QuizPageController extends GetxController {
 
   var totalPointsForTheCurrentSession = 0.obs;
 
-  var passingPointsCriteria = 8;
+  var passingPointsCriteria = 30;
 
   var completedModules = {}.obs;
 

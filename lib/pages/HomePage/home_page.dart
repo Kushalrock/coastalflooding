@@ -38,6 +38,12 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).pushNamed('/post');
             },
             child: Text('POST'),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/heatmap');
+            },
+            icon: Icon(Icons.map),
           )
         ],
         backgroundColor: NowUIColors.white,
