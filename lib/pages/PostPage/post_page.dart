@@ -169,6 +169,8 @@ class _PostPageState extends State<PostPage> {
                                         ),
                                       ),
                                     );
+                                  } else {
+                                    Navigator.of(context).pop();
                                   }
                                 },
                                 icon: Icon(

@@ -138,7 +138,10 @@ class PostPageController extends GetxController {
     } else {
       success = checkTextAwardPoints();
     }
-    if (success == false) return {"error": "Not a valid post"};
+    if (success == false) {
+      loading.value = false;
+      return {"error": "Not a valid post"};
+    }
     if (photo != null) {
       imgageUrl = await uploadPhoto(photo);
     }
