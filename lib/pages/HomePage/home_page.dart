@@ -47,7 +47,10 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.of(context).pushNamed('/post');
             },
-            child: Text('POST'),
+            child: Text(
+              'POST',
+              style: TextStyle(color: Color(0xFF4956CC)),
+            ),
           ),
           IconButton(
             onPressed: () {
@@ -73,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             },
             icon: Icon(
               Icons.chat_bubble,
-              color: Colors.lightBlue,
+              color: Color(0xFF4956CC),
             ),
           ),
           IconButton(
@@ -82,7 +85,7 @@ class _HomePageState extends State<HomePage> {
             },
             icon: Icon(
               Icons.developer_board,
-              color: Colors.blueGrey,
+              color: Color(0xFF4956CC),
             ),
           )
         ],

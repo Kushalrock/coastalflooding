@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,6 +58,45 @@ class _NewsPageState extends State<NewsPage> {
     return toReturn;
   }
 
+  Future fullPage(String location) {
+    return showGeneralDialog(
+      context: context,
+      pageBuilder: (ctx, anim1, anim2) => AlertDialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: Colors.black, width: 2)),
+        content: Container(
+          height: 300,
+          width: 400,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(
+              location,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        elevation: 2,
+        actions: [
+          ElevatedButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+      transitionBuilder: (ctx, anim1, anim2, child) => BackdropFilter(
+        filter:
+            ImageFilter.blur(sigmaX: 4 * anim1.value, sigmaY: 4 * anim1.value),
+        child: FadeTransition(
+          child: child,
+          opacity: anim1,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +112,7 @@ class _NewsPageState extends State<NewsPage> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.blue),
+                        shape: BoxShape.circle, color: Color(0xFF4956CC)),
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
@@ -80,8 +121,10 @@ class _NewsPageState extends State<NewsPage> {
                           width: 100,
                         )),
                   ),
-                  SizedBox(width: 50.0),
+                  SizedBox(width: 30.0),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         margin: EdgeInsets.only(
@@ -104,9 +147,12 @@ class _NewsPageState extends State<NewsPage> {
                         child: Obx(
                           () => Text(
                             _profileController.email.value,
-                            style: TextStyle(fontSize: 12, color: Colors.black),
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -115,6 +161,9 @@ class _NewsPageState extends State<NewsPage> {
                             Icons.water_drop,
                             color: Colors.lightBlue,
                             size: 40,
+                          ),
+                          const SizedBox(
+                            width: 10,
                           ),
                           Obx(
                             () => Text(
@@ -144,6 +193,9 @@ class _NewsPageState extends State<NewsPage> {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             CarouselSlider(
               options: CarouselOptions(
                 height: 200,
@@ -159,42 +211,77 @@ class _NewsPageState extends State<NewsPage> {
                 },
               ),
               items: [
-                Container(
-                  height: 200,
-                  width: 330,
-                  padding: EdgeInsets.all(10.0),
-                  child: Image.asset('assets/images/yearforecast.png',
-                      fit: BoxFit.cover),
-                ),
-                Container(
-                  height: 200,
-                  width: 330,
-                  padding: EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    'assets/images/fiveyearforecast.png',
-                    fit: BoxFit.cover,
+                InkWell(
+                  onTap: () => fullPage('assets/images/yearforecast.png'),
+                  child: Container(
+                    height: 200,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black),
+                    ),
+                    padding: EdgeInsets.all(5.0),
+                    child: Image.asset('assets/images/yearforecast.png',
+                        fit: BoxFit.cover),
                   ),
                 ),
-                Container(
-                  height: 200,
-                  width: 330,
-                  padding: EdgeInsets.all(10.0),
-                  child: Image.asset('assets/images/tenyearforecast.png',
-                      fit: BoxFit.cover),
+                InkWell(
+                  onTap: () => fullPage('assets/images/fiveyearforecast.png'),
+                  child: Container(
+                    height: 200,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black),
+                    ),
+                    padding: EdgeInsets.all(5.0),
+                    child: Image.asset(
+                      'assets/images/fiveyearforecast.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                Container(
-                  height: 200,
-                  width: 330,
-                  padding: EdgeInsets.all(10.0),
-                  child: Image.asset('assets/images/twentyyearforecast.png',
-                      fit: BoxFit.cover),
+                InkWell(
+                  onTap: () => fullPage('assets/images/tenyearforecast.png'),
+                  child: Container(
+                    height: 200,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black),
+                    ),
+                    padding: EdgeInsets.all(5.0),
+                    child: Image.asset('assets/images/tenyearforecast.png',
+                        fit: BoxFit.cover),
+                  ),
                 ),
-                Container(
-                  height: 200,
-                  width: 330,
-                  padding: EdgeInsets.all(10.0),
-                  child: Image.asset('assets/images/forecast2050.png',
-                      fit: BoxFit.cover),
+                InkWell(
+                  onTap: () => fullPage('assets/images/twentyyearforecast.png'),
+                  child: Container(
+                    height: 200,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black),
+                    ),
+                    padding: EdgeInsets.all(5.0),
+                    child: Image.asset('assets/images/twentyyearforecast.png',
+                        fit: BoxFit.cover),
+                  ),
+                ),
+                InkWell(
+                  onTap: () => fullPage('assets/images/forecast2050.png'),
+                  child: Container(
+                    height: 200,
+                    width: 330,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black),
+                    ),
+                    padding: EdgeInsets.all(5.0),
+                    child: Image.asset('assets/images/forecast2050.png',
+                        fit: BoxFit.cover),
+                  ),
                 ),
               ],
               carouselController: _carouselController,
