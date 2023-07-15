@@ -6,7 +6,7 @@ class ProfileController extends GetxController {
   var email = ''.obs;
   var name = ''.obs;
 
-  var aquapoints = 100.obs;
+  var aquapoints = 0.obs;
   var recentAquaPoints = 0.obs;
 
   var chartData = {
