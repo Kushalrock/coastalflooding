@@ -66,13 +66,13 @@ class _NewsPageState extends State<NewsPage> {
             borderRadius: BorderRadius.circular(10),
             side: BorderSide(color: Colors.black, width: 2)),
         content: Container(
-          height: 300,
-          width: 400,
+          height: 300, // 300
+          width: 400, //400
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
               location,
-              fit: BoxFit.cover,
+              fit: BoxFit.fitWidth, //cover or fill
             ),
           ),
         ),
